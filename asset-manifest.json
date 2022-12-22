@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/stemkits_website/static/css/main.61915e61.css",
-    "main.js": "/stemkits_website/static/js/main.67ecee99.js",
+    "main.css": "/stemkits_website/static/css/main.630b020e.css",
+    "main.js": "/stemkits_website/static/js/main.47feca4b.js",
     "static/js/787.672907fe.chunk.js": "/stemkits_website/static/js/787.672907fe.chunk.js",
-    "static/media/landing.jpg": "/stemkits_website/static/media/landing.ca6b2acd3fcb31ea36b5.jpg",
+    "static/media/landing2.jpg": "/stemkits_website/static/media/landing2.e8cb8382a8071b480c38.jpg",
     "index.html": "/stemkits_website/index.html",
-    "main.61915e61.css.map": "/stemkits_website/static/css/main.61915e61.css.map",
-    "main.67ecee99.js.map": "/stemkits_website/static/js/main.67ecee99.js.map",
+    "main.630b020e.css.map": "/stemkits_website/static/css/main.630b020e.css.map",
+    "main.47feca4b.js.map": "/stemkits_website/static/js/main.47feca4b.js.map",
     "787.672907fe.chunk.js.map": "/stemkits_website/static/js/787.672907fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.61915e61.css",
-    "static/js/main.67ecee99.js"
+    "static/css/main.630b020e.css",
+    "static/js/main.47feca4b.js"
   ]
 }
