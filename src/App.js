@@ -1,25 +1,18 @@
 import './App.css';
 import React from "react"
-import {Button , AppBar , Stack} from "@mui/material";
+import {AppBar , Badge} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import Kit from "./components/kit"
 
-import Logo from "./assets/logo.jpeg"
 
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 
@@ -33,12 +26,20 @@ const darkTheme = createTheme({
   },
 });
 
-
+const kit1_product_id = "{kit1-product-id]";
+const kit2_product_id = "{kit2-product-id]";
 
 class App extends React.Component {
   constructor(props){
     super(props);
+    localStorage.setItem('count' ,"0")
+    localStorage.setItem(kit1_product_id , "0");
+    localStorage.setItem(kit2_product_id , "0");
+
     this.state = {
+      kit1Count : localStorage.getItem(kit1_product_id),
+      kit2Count : localStorage.getItem(kit2_product_id),
+      productCount : localStorage.getItem('count'),
     };
   }
 
@@ -71,8 +72,15 @@ class App extends React.Component {
                     >
                       STEM KITS
                     </Typography>
-                    
-                    <Button sx={{alignSelf : "right"}} variant="contained" className="cart-btn">cart</Button>
+
+                    <Badge badgeContent={localStorage.getItem("count")} color="primary">
+                    <IconButton onClick={() => {
+                      let url = "https://www.google.com"
+                      window.location.href = url;
+                    }}>
+                      <ShoppingCartIcon />
+                    </IconButton>
+                    </Badge>
 
                   </Toolbar>
                 </Container>
@@ -85,26 +93,64 @@ class App extends React.Component {
               <h1>Kits</h1>
             </div>
 
-            {/* <Grid container spacing={1}>
-              <Grid item xs="auto">
-                <Kit image="https://imgur.com/a/mMos19O" name="Kit 1" description="This is the STEM Kit 1"/>
-              </Grid>
-              <Grid item xs="auto">
-                <Kit image="https://imgur.com/a/mMos19O" name="Kit 1" description="This is the STEM Kit 1"/>
-              </Grid>
-            </Grid> */}
             <div className='flex-container'>
               <Kit 
                 image="https://imgur.com/a/mMos19O" 
                 name="STEM Kit 1" 
                 description="Description of STEM Kit 1"
                 price="$99"
+                add={quantity => {
+                  localStorage.setItem(kit1_product_id , quantity);
+                  this.setState({kit1Count : quantity});
+
+                  localStorage.setItem('count' , localStorage.getItem(kit2_product_id));
+                  this.setState({productCount : localStorage.getItem(kit2_product_id)});
+
+                  let count = parseInt(localStorage.getItem('count'));
+                  count += parseInt(quantity);
+                  localStorage.setItem('count' , count.toString());
+                  this.setState({productCount : count.toString()});
+                }}
+                remove={() => {
+                  let count = parseInt(localStorage.getItem('count'));
+                  count -= parseInt(localStorage.getItem(kit1_product_id));
+                  localStorage.setItem('count' , count.toString());
+                  this.setState({productCount : count.toString()});
+
+
+                  localStorage.setItem(kit1_product_id , "0");
+                  this.setState({kit1Count : "0"});
+                  
+                }}
               />
               <Kit 
                 image="https://imgur.com/a/mMos19O" 
                 name="STEM Kit 2" 
                 description="Description of STEM Kit 2"
                 price="$199"
+                add={quantity => {
+                  localStorage.setItem(kit2_product_id , quantity);
+                  this.setState({kit2Count : quantity});
+
+                  localStorage.setItem('count' , localStorage.getItem(kit1_product_id));
+                  this.setState({productCount : localStorage.getItem(kit1_product_id)});
+
+                  let count = parseInt(localStorage.getItem('count'));
+                  count += parseInt(quantity);
+                  localStorage.setItem('count' , count.toString());
+                  this.setState({productCount : count.toString()});
+                }}
+                remove={() => {
+
+                  let count = parseInt(localStorage.getItem('count'));
+                  count -= parseInt(localStorage.getItem(kit2_product_id));
+                  localStorage.setItem('count' , count.toString());
+                  this.setState({productCount : count.toString()});
+
+
+                  localStorage.setItem(kit2_product_id , "0");
+                  this.setState({kit1Count : "0"});
+                }}
               />
             </div>
             
