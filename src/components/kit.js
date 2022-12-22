@@ -10,7 +10,7 @@ class KitComponent extends React.Component {
     render(){
         return (
             <div>
-                <Card sx={{ maxWidth: 800 , marginLeft : 2}}>
+                <Card sx={{ maxWidth: 800 , marginLeft : 2 , paddingBottom: 2}}>
                     <CardMedia
                         component="img"
                         alt="Kit Image"
@@ -20,18 +20,21 @@ class KitComponent extends React.Component {
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             {this.props.name}
+                            <br></br>
+                            {this.props.price}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             {this.props.description} 
+                            
                         </Typography>
                     </CardContent>
                     <CardActions>
                         <Button size="small" variant="contained" onClick={
                             () => {
-                                
+
                             }
                         }
-                        >Add to Cart</Button>
+                        sx={{marginLeft : 1}}>Add to Cart</Button>
                     </CardActions>
                     </Card>
             </div>

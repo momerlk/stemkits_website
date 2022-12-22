@@ -6,11 +6,16 @@
 
 .landing {
   text-align: center;
+  padding-top : 10%;
   padding-bottom: 49%;
   padding-left : 10%;
-  background-image: url('./assets/landing.jpg');
+  background-image: url('./assets/landing2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.cart-btn {
+  /* float: right; */
 }
 
 .flex-container {
@@ -44,6 +49,6 @@
 
 .footer {
   text-align: center;
-  padding-top: 5%;
+  padding-top: 0.1%;
   margin-bottom: 0.5%;
 }
