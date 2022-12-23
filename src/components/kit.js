@@ -57,6 +57,7 @@ class KitComponent extends React.Component {
                                 onChange={e => this.setState({quantity : e.target.value})}
                                 type="number"
                                 min="0"
+                                required="true"
                             />
                         </Typography>
                     </CardContent>
