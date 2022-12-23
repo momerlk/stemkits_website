@@ -83,8 +83,8 @@ class App extends React.Component {
                       STEM KITS
                     </Typography>
 
-                    <Badge badgeContent={localStorage.getItem("count")} color="primary">
-                    <IconButton onClick={() => {
+                    <Badge badgeContent={localStorage.getItem("count")} color="primary" sx={{marginTop : 2}}>
+                    <IconButton size="large" onClick={() => {
                       // clicking this button will redirect to the url variable
                       let url = "https://www.google.com"
                       window.location.href = url;
