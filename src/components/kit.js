@@ -30,9 +30,15 @@ class KitComponent extends React.Component {
                             {this.props.description} 
                             <br></br>
                             <br></br>
-                            <TextField size="small" label="Quantity" variant="outlined" 
-                            value={this.state.quantity}
-                            onChange={e => this.setState({quantity : e.target.value})}/>
+                            <TextField 
+                                size="small" 
+                                label="Quantity" 
+                                variant="outlined" 
+                                value={this.state.quantity}
+                                onChange={e => this.setState({quantity : e.target.value})}
+                                type="number"
+                                min="0"
+                            />
                         </Typography>
                     </CardContent>
                     <CardActions>
