@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react"
-import {AppBar , Badge} from "@mui/material";
+import {AppBar , Badge , Tooltip} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -82,15 +82,17 @@ class App extends React.Component {
                     >
                       STEM KITS
                     </Typography>
-
+                      
                     <Badge badgeContent={localStorage.getItem("count")} color="primary" sx={{marginTop : 2}}>
-                    <IconButton size="large" onClick={() => {
-                      // clicking this button will redirect to the url variable
-                      let url = "https://www.google.com"
-                      window.location.href = url;
-                    }}>
-                      <ShoppingCartIcon />
-                    </IconButton>
+                      <Tooltip title="checkout">
+                        <IconButton size="large" onClick={() => {
+                          // clicking this button will redirect to the url variable
+                          let url = "https://www.google.com"
+                          window.location.href = url;
+                        }}>
+                          <ShoppingCartIcon />
+                        </IconButton>
+                      </Tooltip>
                     </Badge>
 
                   </Toolbar>

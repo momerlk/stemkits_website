@@ -1,5 +1,11 @@
-import {Card , CardActions , CardMedia , CardContent , Button , Typography , TextField , Snackbar , Alert} from "@mui/material";
+import {Card , CardActions , CardMedia , CardContent , Button , Typography , TextField , Snackbar} from "@mui/material";
 import React from "react";
+
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 class KitComponent extends React.Component {
     constructor(props){
@@ -8,12 +14,18 @@ class KitComponent extends React.Component {
             quantity : "",
             showMsg : false,
             msg : "",
+            showErr : false,
+            err : "",
         };
     }
 
     snackbar(msg){
         this.setState({msg : msg})
         this.setState({showMsg : true})
+    }
+    error(err){
+        this.setState({err : err})
+        this.setState({showErr : true})
     }
 
     render(){
@@ -52,13 +64,25 @@ class KitComponent extends React.Component {
                         <Button size="medium" variant="contained" 
                             onClick={
                                 () => {
+                                    if (parseInt(this.state.quantity) === NaN) {
+                                        this.setState({quantity : ""});
+                                        this.error(`please choose a numerical value`)
+                                        return; 
+                                    }
+                                    if (parseInt(this.state.quantity) < 1) {
+                                        this.setState({quantity : ""});
+                                        this.error(`quantity cannot be less than 1`)
+                                        return; 
+                                    }
                                     if (this.state.quantity === ""){
-                                        this.props.add("0");
+                                        this.setState({quantity : ""});
+                                        this.error(`please select a quantity`)
+                                        return;
                                     }
                                     else {
                                         this.props.add(this.state.quantity)
                                     }
-                                    this.snackbar(`added ${this.state.quantity} ${this.props.name} to cart`)
+                                    this.snackbar(`${this.state.quantity} ${this.props.name.toLowerCase()} added to cart`)
                                     this.setState({quantity : ""})
                                 }
                             }
@@ -68,7 +92,7 @@ class KitComponent extends React.Component {
                                 () => {
                                     this.props.remove();
                                     this.setState({quantity : ""})
-                                    this.snackbar(`removed ${this.props.name} from cart`)
+                                    this.snackbar(`removed ${this.props.name.toLowerCase()} from cart`)
                                 }
                             }
                         sx={{marginLeft : 1}}>Remove from Cart</Button>
@@ -79,8 +103,17 @@ class KitComponent extends React.Component {
                         autoHideDuration={5000}
                         onClose={() => this.setState({showMsg : false})}
                     >
-                        <Alert severity="success" sx={{ width: '100%' }}>
+                        <Alert severity="success" sx={{ width: '100%' , color : "white" }}>
                             {this.state.msg}
+                        </Alert>
+                    </Snackbar>
+                    <Snackbar
+                        open={this.state.showErr}
+                        autoHideDuration={5000}
+                        onClose={() => this.setState({showErr : false})}
+                    >
+                        <Alert severity="error" sx={{ width: '100%' , color : "white" }}>
+                            {this.state.err}
                         </Alert>
                     </Snackbar>
             </div>
