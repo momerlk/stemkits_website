@@ -44,9 +44,10 @@ const kit2_product_id = "{kit2-product-id]";
 class App extends React.Component {
   constructor(props){
     super(props);
-    localStorage.setItem('count' ,"0")
-    localStorage.setItem(kit1_product_id , "0");
-    localStorage.setItem(kit2_product_id , "0");
+    // below code caused data to be lost if page was refreshed
+    // localStorage.setItem('count' ,"0")
+    // localStorage.setItem(kit1_product_id , "0");
+    // localStorage.setItem(kit2_product_id , "0");  
 
     this.state = {
       kit1Count : localStorage.getItem(kit1_product_id),

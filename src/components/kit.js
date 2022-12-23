@@ -70,9 +70,9 @@ class KitComponent extends React.Component {
                                         this.error(`please choose a numerical value`)
                                         return; 
                                     }
-                                    if (parseInt(this.state.quantity) < 1) {
+                                    if (parseInt(this.state.quantity) < 1 || parseInt(this.state.quantity) > 99) {
                                         this.setState({quantity : ""});
-                                        this.error(`quantity cannot be less than 1`)
+                                        this.error(`quantity cannot be less than 1 or more than 99`)
                                         return; 
                                     }
                                     if (this.state.quantity === ""){
@@ -83,7 +83,7 @@ class KitComponent extends React.Component {
                                     else {
                                         this.props.add(this.state.quantity)
                                     }
-                                    this.snackbar(`${this.state.quantity} ${this.props.name.toLowerCase()} added to cart`)
+                                    this.snackbar(`${this.state.quantity} ${this.props.name.toLowerCase()}s added to cart`)
                                     this.setState({quantity : ""})
                                 }
                             }
