@@ -8,6 +8,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import Kit from "./components/kit"
 
+import kit1Img from "./assets/kit1.jpg"
+import kit2Img from "./assets/kit2.jpg"
 
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -108,7 +110,7 @@ class App extends React.Component {
 
             <div className='flex-container'>
               <Kit 
-                image="https://imgur.com/a/mMos19O" 
+                image={kit1Img}
                 name="STEM Kit 1" 
                 description="Description of STEM Kit 1"
                 price="$99"
@@ -142,7 +144,7 @@ class App extends React.Component {
                 }}
               />
               <Kit 
-                image="https://imgur.com/a/mMos19O" 
+                image={kit2Img}
                 name="STEM Kit 2" 
                 description="Description of STEM Kit 2"
                 price="$199"

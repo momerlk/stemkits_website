@@ -31,12 +31,12 @@ class KitComponent extends React.Component {
     render(){
         return (
             <div>
-                <Card sx={{ maxWidth: 800 , marginLeft : 2.5 , marginBottom : 2 , paddingBottom: 2 , fontFamily: 'Montserrat'}}>
+                <Card sx={{ maxWidth: 400  , marginLeft : 2.5 , marginBottom : 2 , paddingBottom: 2 , fontFamily: 'Montserrat'}}>
                     <CardMedia
                         component="img"
                         alt="Kit Image"
                         height="400"
-                        src="https://i0.wp.com/sciencestore.pk/wp-content/uploads/2020/08/kit-3.0.jpg?fit=1650%2C1275&ssl=1"
+                        src={this.props.image}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
