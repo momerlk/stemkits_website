@@ -1,4 +1,4 @@
-import {Card , CardActions , CardMedia , CardContent , Button , Typography , TextField} from "@mui/material";
+import {Card , CardActions , CardMedia , CardContent , Button , Typography , TextField , Snackbar , Alert} from "@mui/material";
 import React from "react";
 
 class KitComponent extends React.Component {
@@ -6,7 +6,14 @@ class KitComponent extends React.Component {
         super(props);
         this.state = {
             quantity : "",
+            showMsg : false,
+            msg : "",
         };
+    }
+
+    snackbar(msg){
+        this.setState({msg : msg})
+        this.setState({showMsg : true})
     }
 
     render(){
@@ -50,7 +57,8 @@ class KitComponent extends React.Component {
                                     }
                                     else {
                                         this.props.add(this.state.quantity)
-                                    } 
+                                    }
+                                    this.snackbar(`added ${this.state.quantity} ${this.props.name} to cart`)
                                     this.setState({quantity : ""})
                                 }
                             }
@@ -60,11 +68,21 @@ class KitComponent extends React.Component {
                                 () => {
                                     this.props.remove();
                                     this.setState({quantity : ""})
+                                    this.snackbar(`removed ${this.props.name} from cart`)
                                 }
                             }
                         sx={{marginLeft : 1}}>Remove from Cart</Button>
                     </CardActions>
                     </Card>
+                    <Snackbar
+                        open={this.state.showMsg}
+                        autoHideDuration={5000}
+                        onClose={() => this.setState({showMsg : false})}
+                    >
+                        <Alert severity="success" sx={{ width: '100%' }}>
+                            {this.state.msg}
+                        </Alert>
+                    </Snackbar>
             </div>
         )
     }
