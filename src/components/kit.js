@@ -31,7 +31,7 @@ class KitComponent extends React.Component {
     render(){
         return (
             <div>
-                <Card sx={{ maxWidth: 800 , marginLeft : 2.5 , marginBottom : 2 , paddingBottom: 2}}>
+                <Card sx={{ maxWidth: 800 , marginLeft : 2.5 , marginBottom : 2 , paddingBottom: 2 , fontFamily: 'Montserrat'}}>
                     <CardMedia
                         component="img"
                         alt="Kit Image"
