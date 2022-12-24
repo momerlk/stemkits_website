@@ -119,8 +119,25 @@ class App extends React.Component {
             <div className='flex-container'>
               <Kit 
                 image={kit1Img}
-                name="STEM Kit 1" 
-                description="Description of STEM Kit 1"
+                name="S.T.E.M Kit 1" 
+                description={(
+                  <div>
+                    <h3>Experiments</h3>
+                    1. Non-Newtonian Fluids  
+                    <br></br>
+                    2. Elephant's Toothpaste 
+                    <br></br>
+                    3. Lava Lamp
+                    <br></br>
+
+                    <h3>Components</h3>
+                    1.
+                    <br></br>
+                    2.
+                    <br></br>
+                    3.
+                  </div>
+                )}
                 price="$99"
                 add={quantity => {
                   // set kit1count to be quantity
@@ -153,8 +170,25 @@ class App extends React.Component {
               />
               <Kit 
                 image={kit2Img}
-                name="STEM Kit 2" 
-                description="Description of STEM Kit 2"
+                name="S.T.E.M Kit 2" 
+                description={(
+                  <div>
+                    <h3>Projects</h3>
+                    1.
+                    <h3>Components</h3>
+                    1.Arduino Uno
+                    <br></br>
+                    2.Ultrasonic Sensor
+                    <br></br>
+                    3.Geared motors
+                    <br></br>
+                    4.Jumper wires
+                    <br></br>
+                    5.Infrared recievers and remote
+                    <br></br>
+                    6.Thermistors and LDR
+                  </div>
+                )}
                 price="$199"
                 add={quantity => {
                   // set kit2count to be quantity
@@ -185,6 +219,22 @@ class App extends React.Component {
                   this.setState({kit1Count : "0"});
                 }}
               />
+            </div>
+
+            <div className='about-us'>
+              <h2>About Us</h2>
+              <p>STEM Kits are ready-made, comprehensive kits that can be purchased online. Each kit consists of several experiments that can be performed either by an individual, or in groups. The kits can be purchased off of the website, or requested for pickup from specific locations across Lahore. 
+              </p>
+            </div>
+
+            <div className='our-mission'>
+              <h2>Our Mission</h2>
+              <p>The thought process that went behind STEM Kits come as an outcome of a lack of readily available science experiments in countries like Pakistan. Countries with immense untouched talent but with no facilities to nurture it. STEM Kits hopes to make scientific learning inexpensive, innovative and available to all, one kit at a time. </p>
+            </div>
+
+            <div className='comm-outreach'>
+              <h2>Community Outreach</h2>
+              <p>With the goal of making kits more accessible, the STEM Kits team plans to donate all profits made off the Kits for constructing similar models for the underprivileged communities, teaching the basics of various scientific concepts to those deprived of such resources. </p>
             </div>
             
 
