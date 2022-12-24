@@ -28,6 +28,7 @@ const darkTheme = createTheme({
   },
 });
 
+const shop_name = "{shop}"
 
 const kit1_product_id = "{kit1-product-id]";
 // const kit1_image = "";
@@ -89,8 +90,8 @@ class App extends React.Component {
                     <Badge badgeContent={localStorage.getItem("count")} color="primary" sx={{marginTop : 2}}>
                       <Tooltip title="checkout">
                         <IconButton size="large" onClick={() => {
-                          // clicking this button will redirect to the url variable
-                          let url = "https://www.google.com"
+                          // clicking this button will redirect to shopify cart permalink
+                          let url = `http://${shop_name}.myshopify.com/cart/${kit1_product_id}:${this.state.kit1Count},${kit2_product_id}:${this.state.kit2Count}                          `
                           window.location.href = url;
                         }}>
                           <ShoppingCartIcon />
