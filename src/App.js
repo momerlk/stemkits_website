@@ -30,25 +30,31 @@ const darkTheme = createTheme({
 
 const shop_name = "{shop}"
 
-const kit1_product_id = "{kit1-product-id]";
-// const kit1_image = "";
-// const kit1_name = "STEM Kit 1";
-// const kit1_description = "Description of STEM Kit 1";
-// const kit1_price = "$99";
+const kit1_product_id = "392902390";
 
-const kit2_product_id = "{kit2-product-id]";
-// const kit2_image = "";
-// const kit2_name = "STEM Kit 2";
-// const kit2_description = "Description of STEM Kit 2";
-// const kit2_price = "$199";
+const kit2_product_id = "43290123";
+
+
+function reset_count(){
+  localStorage.setItem('count' ,"0")
+  localStorage.setItem(kit1_product_id , "0");
+  localStorage.setItem(kit2_product_id , "0");  
+}
 
 class App extends React.Component {
   constructor(props){
     super(props);
-    // below code caused data to be lost if page was refreshed
-    // localStorage.setItem('count' ,"0")
-    // localStorage.setItem(kit1_product_id , "0");
-    // localStorage.setItem(kit2_product_id , "0");  
+
+    if (localStorage.getItem("count") === "NaN" || localStorage.getItem("count") === null){
+      reset_count();
+    }
+    if (localStorage.getItem(kit1_product_id) === "NaN" || localStorage.getItem("count") === null){
+      reset_count();
+    }
+    if (localStorage.getItem(kit2_product_id) === "NaN" || localStorage.getItem("count") === null){
+      reset_count();
+    }
+
 
     this.state = {
       kit1Count : localStorage.getItem(kit1_product_id),
