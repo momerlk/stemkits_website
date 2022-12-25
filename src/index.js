@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Checkout from "./components/checkout"
+
 import reportWebVitals from './reportWebVitals';
 
 import {
@@ -13,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/stemkits_website",
     element: <div><App /></div>,
+  },
+  {
+    path : "stemkits_website/checkout",
+    element : <div><Checkout /></div>,
   },
 ]);
 

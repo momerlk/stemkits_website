@@ -98,7 +98,7 @@ class App extends React.Component {
                         <IconButton size="large" onClick={() => {
                           // clicking this button will redirect to shopify cart permalink
                           let url = `http://${shop_name}.myshopify.com/cart/${kit1_product_id}:${this.state.kit1Count},${kit2_product_id}:${this.state.kit2Count}                          `
-                          window.location.href = url;
+                          window.location.href = "/stemkits_website/checkout";
                         }}>
                           <ShoppingCartIcon />
                         </IconButton>
