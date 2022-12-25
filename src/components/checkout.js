@@ -1,8 +1,10 @@
 import React from "react";
 import "./checkout.css"
 
-import {TextField , Stack , Button , Checkbox} from "@mui/material";
+import {TextField , Stack , Button , Checkbox , Snackbar , Alert} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+
 import CssBaseline from '@mui/material/CssBaseline';
 
 const darkTheme = createTheme({
@@ -17,6 +19,47 @@ const darkTheme = createTheme({
 const label = { inputProps: { 'aria-label': 'Cash on delivery' } };
 
 
+
+
+export class Order {
+    constructor(name , email , tel , zip , address1 , address2 , city , province ){
+        this.name = name;
+        this.email = email;
+        this.tel = tel;
+        this.zip = zip;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.province = province;
+        this.country = "Pakistan";
+    }
+
+    place(){
+        let err = false;
+        try {
+            // const database = client.db('Stemkits');
+            // const coll = database.collection('Orders');
+            // coll.insertOne({
+            //     name : this.name,
+            //     email : this.email , 
+            //     tel : this.tel,
+            //     zip : this.zip,
+            //     address1 : this.address1 , 
+            //     address2 : this.address2 , 
+            //     city : this.city , 
+            //     province : this.province , 
+            //     country : this.country,
+            // }) 
+
+        } finally {
+            err = true;
+        }
+        return err;
+    }
+
+}
+
+
 export default class Checkout extends React.Component {
     constructor(props){
         super(props);
@@ -29,7 +72,33 @@ export default class Checkout extends React.Component {
             ad2 : "",
             city : "",
             province : "",
+
+            showMsg : false,
+            msg : "",
+
+            showErr : false,
+            err : "",
         }
+    }
+
+    snackbar(msg){
+        this.setState({msg : msg})
+        this.setState({showMsg : true})
+    }
+
+    error(err){
+        this.setState({err : err})
+        this.setState({showErr : true})
+    }
+
+    componentDidMount(){
+        const script = document.createElement("script");
+
+        script.src = "node_modules/parse/dist/parse.min.js";
+        script.async = true;
+
+        document.body.appendChild(script);
+
     }
 
     render(){
@@ -112,7 +181,50 @@ export default class Checkout extends React.Component {
             <Checkbox {...label} defaultChecked />
             <br></br>
             <br></br>
-            <Button size="large" variant="contained">Place order</Button>
+            <Button size="large" variant="contained" onClick={
+                () => {
+                    
+                    let order = new Order(this.state.name , this.state.e , this.state.tel , this.state.zip , this.state.ad1 , this.state.ad2 , this.state.city , this.state.province);
+
+                    let placed = order.place();
+                    if (!placed){
+                        this.error("Could not place order");
+                        return;
+                    }
+
+                    this.setState({
+                        name : "",
+                        email : "",
+                        tel : "",
+                        zip : "",
+                        ad1 : "",
+                        ad2 : "",
+                        city : "",
+                        province : "",
+                    });
+                    this.snackbar("Successfully placed order!")
+                    
+                }
+            }>Place order</Button>
+            <Snackbar
+                        open={this.state.showMsg}
+                        autoHideDuration={5000}
+                        onClose={() => this.setState({showMsg : false})}
+                    >
+                        <Alert severity="success" sx={{ width: '100%' , color : "white" }}>
+                            {this.state.msg}
+                        </Alert>
+                    </Snackbar>
+
+            <Snackbar
+                        open={this.state.showErr}
+                        autoHideDuration={5000}
+                        onClose={() => this.setState({showErr : false})}
+                    >
+                        <Alert severity="error" sx={{ width: '100%' , color : "white" }}>
+                            {this.state.err}
+                        </Alert>
+                    </Snackbar>
             </div>
             </ThemeProvider>
         )
