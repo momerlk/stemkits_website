@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Kit from "./components/kit"
 
 import kit1Img from "./assets/kit1.jpg"
-import kit2Img from "./assets/kit2.jpg"
+import kit2Img from "./assets/kit2.png"
 
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -128,14 +128,21 @@ class App extends React.Component {
                     2. Elephant's Toothpaste 
                     <br></br>
                     3. Lava Lamp
-                    <br></br>
 
                     <h3>Components</h3>
-                    1.
+                    1.Hydrogen peroxide
                     <br></br>
-                    2.
+                    2.Liquid dishwashing soap
                     <br></br>
-                    3.
+                    3.Dry yeast
+                    <br></br>
+                    4.Cornstarch
+                    <br></br>
+                    5.Vegetable Oil
+                    <br></br>
+                    6.Baking soda
+                    <br></br>
+                    7.Vinegar
                   </div>
                 )}
                 price="$99"
@@ -174,7 +181,11 @@ class App extends React.Component {
                 description={(
                   <div>
                     <h3>Projects</h3>
-                    1.
+                    1.Obstacle Avoiding Car
+                    <br></br>
+                    2.Temperature Sensor
+                    <br></br>
+                    3.Password secured lock
                     <h3>Components</h3>
                     1.Arduino Uno
                     <br></br>
@@ -187,6 +198,8 @@ class App extends React.Component {
                     5.Infrared recievers and remote
                     <br></br>
                     6.Thermistors and LDR
+                    <br></br>
+                    {"."}
                   </div>
                 )}
                 price="$199"
