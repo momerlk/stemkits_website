@@ -2,3 +2,9 @@
     text-align: center;
     margin : 2%;
 }
+
+.back {
+    position: fixed;
+    top: 0px !important;
+    left: 0px !important; 
+}

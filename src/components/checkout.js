@@ -1,9 +1,10 @@
 import React from "react";
 import "./checkout.css"
 
-import {TextField , Stack , Button , Checkbox , Snackbar , Alert} from "@mui/material";
+import {TextField , Stack , Button , Checkbox , Snackbar , Alert , IconButton} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -109,6 +110,9 @@ export default class Checkout extends React.Component {
             <ThemeProvider theme={darkTheme}>
             <CssBaseline />
             <div className="checkout-form">
+            <IconButton onClick={() => this.props.change()} className="back">
+                <ArrowBackIcon />
+            </IconButton>
             <h1>Checkout</h1>
             <Stack spacing={2}>
                 <TextField 

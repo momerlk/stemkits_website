@@ -273,7 +273,7 @@ class Root extends React.Component {
     return (
       <div>
       {
-        this.state.showApp ? (<div><App change={() => this.setState({showApp : false})} /></div>) : (<div><Checkout /></div>)
+        this.state.showApp ? (<div><App change={() => this.setState({showApp : false})} /></div>) : (<div><Checkout change={() => this.setState({showApp : true})}/></div>)
       }
       </div>
     )
