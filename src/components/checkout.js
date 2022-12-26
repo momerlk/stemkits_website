@@ -1,12 +1,15 @@
 import React from "react";
 import "./checkout.css"
-
 import {TextField , Stack , Button , Checkbox , Snackbar , Alert , IconButton} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import CssBaseline from '@mui/material/CssBaseline';
+
+
+
+var axios = require("axios")
 
 const darkTheme = createTheme({
   palette: {
@@ -61,24 +64,7 @@ export class Order {
             kit2Count : localStorage.getItem(kit2_product_id),
         }
 
-        fetch(url , {
-            method : "POST",
-            body : JSON.stringify({
-                "dataSource" : "Cluster0",
-                "database" : "Stemkits",
-                "collection" : "Orders",
-                "document" : data,
-            }),
-            headers : {
-                'Content-Type': 'application/json',
-      'Access-Control-Request-Headers': '*',
-      'api-key': 'Wke6VjdjNjTFFe7ZfMnze4WRp1FJs8ru9mDxaVoBP7zRVPTSFdkNvaSM57878kVH',
-            }
-        }).then(resp => {
-            alert(resp.status)
-        }).catch(err => {
-            alert(err)
-        })
+        
 
         
 
@@ -230,25 +216,38 @@ export default class Checkout extends React.Component {
                         kit2Count : localStorage.getItem(kit2_product_id),
                     }
 
-                    fetch(url , {
-                        method : "POST",
-                        body : JSON.stringify({
-                            "dataSource" : "Cluster0",
-                            "database" : "Stemkits",
-                            "collection" : "Orders",
-                            "document" : data,
-                        }),
-                        headers : {
-                            'Content-Type': 'application/json',
-                'Access-Control-Request-Headers': '*',
-                'Access-Control-Allow-Origin' : '*',
-                'api-key': 'Wke6VjdjNjTFFe7ZfMnze4WRp1FJs8ru9mDxaVoBP7zRVPTSFdkNvaSM57878kVH',
-                        }
-                    }).then(resp => {
-                        alert(resp.status)
-                    }).catch(err => {
-                        alert(err)
-                    })
+                    
+var data2 = JSON.stringify({
+    "collection": "Orders",
+    "database": "Stemkits",
+    "dataSource": "Cluster0",
+    "projection": {
+        "_id": 1
+    }
+});
+            
+var config = {
+    method: 'post',
+    url: 'https://data.mongodb-api.com/app/data-ekngi/endpoint/data/v1/action/findOne',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': 'Wke6VjdjNjTFFe7ZfMnze4WRp1FJs8ru9mDxaVoBP7zRVPTSFdkNvaSM57878kVH',
+    },
+    data: data2
+};
+
+
+            
+axios(config)
+    .then(function (response) {
+        alert(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+        alert(error);
+    });
+
+    alert("error")
 
 
                     this.setState({

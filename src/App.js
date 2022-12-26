@@ -99,7 +99,7 @@ class App extends React.Component {
                       <Tooltip title="checkout">
                         <IconButton size="large" onClick={() => {
                           // clicking this button will redirect to shopify cart permalink
-                          this.props.change();
+                          window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdBrQSGuZ46gHUqJUy6jRI8XBgn-K6Ztw4G5h0GnhmxMHZBuQ/viewform?usp=sf_link";
                         }}>
                           <ShoppingCartIcon />
                         </IconButton>
