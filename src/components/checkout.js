@@ -43,9 +43,9 @@ export class Order {
         this.country = "Pakistan";
     }
 
-    async place(){
+    place(){
         let err = false;
-        const url = "";
+        const url = "https://data.mongodb-api.com/app/data-ekngi/endpoint/data/v1/action/insertOne";
 
         const data = {
             name : this.name,
@@ -61,14 +61,26 @@ export class Order {
             kit2Count : localStorage.getItem(kit2_product_id),
         }
 
-        const resp = await fetch(url , {
+        fetch(url , {
             method : "POST",
-            body : JSON.stringify(data),
+            body : JSON.stringify({
+                "dataSource" : "Cluster0",
+                "database" : "Stemkits",
+                "collection" : "Orders",
+                "document" : data,
+            }),
+            headers : {
+                'Content-Type': 'application/json',
+      'Access-Control-Request-Headers': '*',
+      'api-key': 'Wke6VjdjNjTFFe7ZfMnze4WRp1FJs8ru9mDxaVoBP7zRVPTSFdkNvaSM57878kVH',
+            }
+        }).then(resp => {
+            alert(resp.status)
+        }).catch(err => {
+            alert(err)
         })
 
-        if (resp.status !== 200) {
-            err = true;
-        }
+        
 
         return err;
     }
@@ -195,16 +207,49 @@ export default class Checkout extends React.Component {
             <br></br>
             <br></br>
             <Button size="large" variant="contained" onClick={
-                () => {
+                async () => {
 
                     if (this.state.name === "" || this.state.email === "" || this.state.tel === "" || this.state.zip === "" || this.state.address1 === "" || this.state.address2 === "" || this.state.city === "" || this.state.province === "" ){
                         this.error(`please fill the required details`);
                         return;
                     }
                     
-                    let order = new Order(this.state.name , this.state.e , this.state.tel , this.state.zip , this.state.ad1 , this.state.ad2 , this.state.city , this.state.province);
+                    const url = "https://data.mongodb-api.com/app/data-ekngi/endpoint/data/v1/action/insertOne";
 
-                    let placed = order.place();
+                    const data = {
+                        name : this.state.name,
+                        email : this.state.email,
+                        tel : this.state.tel,
+                        zip : this.state.zip,
+                        address1 : this.state.address1,
+                        address2 : this.state.address2,
+                        city : this.state.city,
+                        province : this.state.province,
+                        country : this.state.country,
+                        kit1Count : localStorage.getItem(kit1_product_id),
+                        kit2Count : localStorage.getItem(kit2_product_id),
+                    }
+
+                    fetch(url , {
+                        method : "POST",
+                        body : JSON.stringify({
+                            "dataSource" : "Cluster0",
+                            "database" : "Stemkits",
+                            "collection" : "Orders",
+                            "document" : data,
+                        }),
+                        headers : {
+                            'Content-Type': 'application/json',
+                'Access-Control-Request-Headers': '*',
+                'Access-Control-Allow-Origin' : '*',
+                'api-key': 'Wke6VjdjNjTFFe7ZfMnze4WRp1FJs8ru9mDxaVoBP7zRVPTSFdkNvaSM57878kVH',
+                        }
+                    }).then(resp => {
+                        alert(resp.status)
+                    }).catch(err => {
+                        alert(err)
+                    })
+
 
                     this.setState({
                         name : "",
