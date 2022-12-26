@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/stemkits_website/static/css/main.c2a20c82.css",
-    "main.js": "/stemkits_website/static/js/main.43655de5.js",
+    "main.js": "/stemkits_website/static/js/main.d5b71d95.js",
     "static/js/787.672907fe.chunk.js": "/stemkits_website/static/js/787.672907fe.chunk.js",
     "static/media/kit2.png": "/stemkits_website/static/media/kit2.84269ce2eccc2f064d89.png",
     "static/media/landing.jpg": "/stemkits_website/static/media/landing.d2ac2d9faea6cf05a60e.jpg",
     "static/media/kit1.jpg": "/stemkits_website/static/media/kit1.84bbf91ecb5f27163de7.jpg",
     "index.html": "/stemkits_website/index.html",
     "main.c2a20c82.css.map": "/stemkits_website/static/css/main.c2a20c82.css.map",
-    "main.43655de5.js.map": "/stemkits_website/static/js/main.43655de5.js.map",
+    "main.d5b71d95.js.map": "/stemkits_website/static/js/main.d5b71d95.js.map",
     "787.672907fe.chunk.js.map": "/stemkits_website/static/js/787.672907fe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c2a20c82.css",
-    "static/js/main.43655de5.js"
+    "static/js/main.d5b71d95.js"
   ]
 }
