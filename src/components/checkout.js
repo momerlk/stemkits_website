@@ -34,26 +34,31 @@ export class Order {
         this.country = "Pakistan";
     }
 
-    place(){
+    async place(){
         let err = false;
-        try {
-            // const database = client.db('Stemkits');
-            // const coll = database.collection('Orders');
-            // coll.insertOne({
-            //     name : this.name,
-            //     email : this.email , 
-            //     tel : this.tel,
-            //     zip : this.zip,
-            //     address1 : this.address1 , 
-            //     address2 : this.address2 , 
-            //     city : this.city , 
-            //     province : this.province , 
-            //     country : this.country,
-            // }) 
+        const url = "";
 
-        } finally {
+        const data = {
+            name : this.name,
+            email : this.email,
+            tel : this.tel,
+            zip : this.zip,
+            address1 : this.address1,
+            address2 : this.address2,
+            city : this.city,
+            province : this.province,
+            country : this.country,
+        }
+
+        const resp = await fetch(url , {
+            method : "POST",
+            body : JSON.stringify(data),
+        })
+
+        if (resp.status !== 200) {
             err = true;
         }
+
         return err;
     }
 
@@ -92,12 +97,6 @@ export default class Checkout extends React.Component {
     }
 
     componentDidMount(){
-        const script = document.createElement("script");
-
-        script.src = "node_modules/parse/dist/parse.min.js";
-        script.async = true;
-
-        document.body.appendChild(script);
 
     }
 
@@ -187,10 +186,6 @@ export default class Checkout extends React.Component {
                     let order = new Order(this.state.name , this.state.e , this.state.tel , this.state.zip , this.state.ad1 , this.state.ad2 , this.state.city , this.state.province);
 
                     let placed = order.place();
-                    if (!placed){
-                        this.error("Could not place order");
-                        return;
-                    }
 
                     this.setState({
                         name : "",
