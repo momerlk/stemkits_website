@@ -24,6 +24,12 @@ const kit1_product_id = "392902390";
 
 const kit2_product_id = "43290123";
 
+function reset_count(){
+    localStorage.setItem('count' ,"0")
+    localStorage.setItem(kit1_product_id , "0");
+    localStorage.setItem(kit2_product_id , "0");  
+  }
+
 export class Order {
     constructor(name , email , tel , zip , address1 , address2 , city , province ){
         this.name = name;
@@ -190,6 +196,11 @@ export default class Checkout extends React.Component {
             <br></br>
             <Button size="large" variant="contained" onClick={
                 () => {
+
+                    if (this.state.name === "" || this.state.email === "" || this.state.tel === "" || this.state.zip === "" || this.state.address1 === "" || this.state.address2 === "" || this.state.city === "" || this.state.province === "" ){
+                        this.error(`please fill the required details`);
+                        return;
+                    }
                     
                     let order = new Order(this.state.name , this.state.e , this.state.tel , this.state.zip , this.state.ad1 , this.state.ad2 , this.state.city , this.state.province);
 
@@ -205,6 +216,8 @@ export default class Checkout extends React.Component {
                         city : "",
                         province : "",
                     });
+
+                    reset_count();
                     this.snackbar("Successfully placed order!")
                     
                 }
