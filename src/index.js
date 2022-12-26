@@ -2,29 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Checkout from "./components/checkout"
 
 import reportWebVitals from './reportWebVitals';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/stemkits_website",
-    element: <div><App /></div>,
-  },
-  {
-    path : "stemkits_website/checkout",
-    element : <div><Checkout /></div>,
-  },
-]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
 

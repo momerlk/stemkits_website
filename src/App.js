@@ -17,6 +17,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AdbIcon from '@mui/icons-material/Adb';
 
+import Checkout from "./components/checkout"
+
 
 
 const darkTheme = createTheme({
@@ -97,8 +99,7 @@ class App extends React.Component {
                       <Tooltip title="checkout">
                         <IconButton size="large" onClick={() => {
                           // clicking this button will redirect to shopify cart permalink
-                          let url = `http://${shop_name}.myshopify.com/cart/${kit1_product_id}:${this.state.kit1Count},${kit2_product_id}:${this.state.kit2Count}                          `
-                          window.location.href = "/stemkits_website/checkout";
+                          this.props.change();
                         }}>
                           <ShoppingCartIcon />
                         </IconButton>
@@ -261,6 +262,23 @@ class App extends React.Component {
   }
 }
 
+class Root extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showApp : true,
+    }
+  }
+  render(){
+    return (
+      <div>
+      {
+        this.state.showApp ? (<div><App change={() => this.setState({showApp : false})} /></div>) : (<div><Checkout /></div>)
+      }
+      </div>
+    )
+  }
+}
 
 
-export default App;
+export default Root;

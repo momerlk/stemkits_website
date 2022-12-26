@@ -19,7 +19,9 @@ const darkTheme = createTheme({
 const label = { inputProps: { 'aria-label': 'Cash on delivery' } };
 
 
+const kit1_product_id = "392902390";
 
+const kit2_product_id = "43290123";
 
 export class Order {
     constructor(name , email , tel , zip , address1 , address2 , city , province ){
@@ -48,6 +50,8 @@ export class Order {
             city : this.city,
             province : this.province,
             country : this.country,
+            kit1Count : localStorage.getItem(kit1_product_id),
+            kit2Count : localStorage.getItem(kit2_product_id),
         }
 
         const resp = await fetch(url , {
