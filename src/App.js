@@ -35,6 +35,8 @@ const shop_name = "{shop}"
 const kit1_product_id = "392902390";
 
 const kit2_product_id = "43290123";
+const kit1Price = 1500;
+const kit2Price = 6500;
 
 
 function reset_count(){
@@ -98,8 +100,7 @@ class App extends React.Component {
                     <Badge badgeContent={localStorage.getItem("count")} color="primary" sx={{marginTop : 2}}>
                       <Tooltip title="checkout">
                         <IconButton size="large" onClick={() => {
-                          // clicking this button will redirect to shopify cart permalink
-                          window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdBrQSGuZ46gHUqJUy6jRI8XBgn-K6Ztw4G5h0GnhmxMHZBuQ/viewform?usp=sf_link";
+                          this.props.change();
                         }}>
                           <ShoppingCartIcon />
                         </IconButton>
@@ -273,7 +274,10 @@ class Root extends React.Component {
     return (
       <div>
       {
-        this.state.showApp ? (<div><App change={() => this.setState({showApp : false})} /></div>) : (<div><Checkout change={() => this.setState({showApp : true})}/></div>)
+        this.state.showApp ? (<div><App change={() => this.setState({showApp : false})} /></div>) : (<div><Checkout 
+          kit1Image={kit1Img} kit1Price={kit1Price} 
+          kit2Image={kit2Img} kit2Price={kit2Price}
+          change={() => this.setState({showApp : true})}/></div>)
       }
       </div>
     )

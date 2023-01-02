@@ -1,15 +1,16 @@
 import React from "react";
 import "./checkout.css"
-import {TextField , Stack , Button , Checkbox , Snackbar , Alert , IconButton} from "@mui/material";
+import {TextField , Stack , Button , Checkbox , Snackbar , Alert , IconButton, Typography} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
+import CheckoutKit from "./checkout_kit"
 
 
-var axios = require("axios")
+
 
 const darkTheme = createTheme({
   palette: {
@@ -48,7 +49,7 @@ export class Order {
 
     place(){
         let err = false;
-        const url = "https://data.mongodb-api.com/app/data-ekngi/endpoint/data/v1/action/insertOne";
+        const url = "";
 
         const data = {
             name : this.name,
@@ -109,6 +110,18 @@ export default class Checkout extends React.Component {
 
     }
 
+    // quantity of kit1
+    getKit1Q(){
+        return parseInt(localStorage.getItem("392902390"));
+    }
+    getkit2Q(){
+        return parseInt(localStorage.getItem("43290123"));
+    }
+
+    getTotal(){
+        return (this.props.kit1Price * this.getKit1Q()) + (this.props.kit2Price * this.getkit2Q());
+    }
+
     render(){
         return (
             <ThemeProvider theme={darkTheme}>
@@ -118,6 +131,19 @@ export default class Checkout extends React.Component {
                 <ArrowBackIcon />
             </IconButton>
             <h1>Checkout</h1>
+            <CheckoutKit 
+                image={this.props.kit1Image} 
+                price={this.props.kit1Price} 
+                quantity={this.getKit1Q()}
+                name="S.T.E.M Kit 1"
+            />
+            <CheckoutKit 
+                image={this.props.kit2Image} 
+                price={this.props.kit2Price} 
+                quantity={this.getkit2Q()}
+                name="S.T.E.M Kit 2"
+            />
+            <Typography variant="h5" sx={{marginTop : 4 , marginBottom : 4}}>Total Rs {this.getTotal()}</Typography>
             <Stack spacing={2}>
                 <TextField 
                                 size="large" 
@@ -215,39 +241,6 @@ export default class Checkout extends React.Component {
                         kit1Count : localStorage.getItem(kit1_product_id),
                         kit2Count : localStorage.getItem(kit2_product_id),
                     }
-
-                    
-var data2 = JSON.stringify({
-    "collection": "Orders",
-    "database": "Stemkits",
-    "dataSource": "Cluster0",
-    "projection": {
-        "_id": 1
-    }
-});
-            
-var config = {
-    method: 'post',
-    url: 'https://data.mongodb-api.com/app/data-ekngi/endpoint/data/v1/action/findOne',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Request-Headers': '*',
-      'api-key': 'Wke6VjdjNjTFFe7ZfMnze4WRp1FJs8ru9mDxaVoBP7zRVPTSFdkNvaSM57878kVH',
-    },
-    data: data2
-};
-
-
-            
-axios(config)
-    .then(function (response) {
-        alert(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-        alert(error);
-    });
-
-    alert("error")
 
 
                     this.setState({
