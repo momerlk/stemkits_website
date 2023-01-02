@@ -147,7 +147,7 @@ class App extends React.Component {
                     7.Vinegar
                   </div>
                 )}
-                price="$99"
+                price="Rs 1500"
                 add={quantity => {
                   // set kit1count to be quantity
                   localStorage.setItem(kit1_product_id , quantity);
@@ -204,7 +204,7 @@ class App extends React.Component {
                     {"."}
                   </div>
                 )}
-                price="$199"
+                price="Rs 6500"
                 add={quantity => {
                   // set kit2count to be quantity
                   localStorage.setItem(kit2_product_id , quantity);
@@ -277,7 +277,7 @@ class Root extends React.Component {
         this.state.showApp ? (<div><App change={() => this.setState({showApp : false})} /></div>) : (<div><Checkout 
           kit1Image={kit1Img} kit1Price={kit1Price} 
           kit2Image={kit2Img} kit2Price={kit2Price}
-          change={() => this.setState({showApp : true})}/></div>)
+          change={() => {this.setState({showApp : true})}}/></div>)
       }
       </div>
     )

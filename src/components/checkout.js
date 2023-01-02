@@ -34,46 +34,6 @@ function reset_count(){
     localStorage.setItem(kit2_product_id , "0");  
   }
 
-export class Order {
-    constructor(name , email , tel , zip , address1 , address2 , city , province ){
-        this.name = name;
-        this.email = email;
-        this.tel = tel;
-        this.zip = zip;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.city = city;
-        this.province = province;
-        this.country = "Pakistan";
-    }
-
-    place(){
-        let err = false;
-        const url = "";
-
-        const data = {
-            name : this.name,
-            email : this.email,
-            tel : this.tel,
-            zip : this.zip,
-            address1 : this.address1,
-            address2 : this.address2,
-            city : this.city,
-            province : this.province,
-            country : this.country,
-            kit1Count : localStorage.getItem(kit1_product_id),
-            kit2Count : localStorage.getItem(kit2_product_id),
-        }
-
-        
-
-        
-
-        return err;
-    }
-
-}
-
 
 export default class Checkout extends React.Component {
     constructor(props){
@@ -112,14 +72,14 @@ export default class Checkout extends React.Component {
 
     // quantity of kit1
     getKit1Q(){
-        return parseInt(localStorage.getItem("392902390"));
+        return parseInt(localStorage.getItem(kit1_product_id));
     }
-    getkit2Q(){
-        return parseInt(localStorage.getItem("43290123"));
+    getKit2Q(){
+        return parseInt(localStorage.getItem(kit2_product_id));
     }
 
     getTotal(){
-        return (this.props.kit1Price * this.getKit1Q()) + (this.props.kit2Price * this.getkit2Q());
+        return (this.props.kit1Price * this.getKit1Q()) + (this.props.kit2Price * this.getKit2Q());
     }
 
     render(){
@@ -131,19 +91,21 @@ export default class Checkout extends React.Component {
                 <ArrowBackIcon />
             </IconButton>
             <h1>Checkout</h1>
-            <CheckoutKit 
+            {(this.getKit1Q() !== 0) ? <CheckoutKit 
                 image={this.props.kit1Image} 
                 price={this.props.kit1Price} 
                 quantity={this.getKit1Q()}
                 name="S.T.E.M Kit 1"
-            />
-            <CheckoutKit 
+            /> : <div></div>}
+            {(this.getKit2Q() !== 0) ? <CheckoutKit 
                 image={this.props.kit2Image} 
                 price={this.props.kit2Price} 
-                quantity={this.getkit2Q()}
+                quantity={this.getKit2Q()}
                 name="S.T.E.M Kit 2"
-            />
-            <Typography variant="h5" sx={{marginTop : 4 , marginBottom : 4}}>Total Rs {this.getTotal()}</Typography>
+            /> : <div></div>}
+            <Typography variant="h5" sx={{marginTop : 4 , marginBottom : 4}}>
+                {(this.getTotal() !== 0) ? `Total Rs ${this.getTotal()}` : `your cart is empty!`}
+            </Typography>
             <Stack spacing={2}>
                 <TextField 
                                 size="large" 
@@ -226,7 +188,7 @@ export default class Checkout extends React.Component {
                         return;
                     }
                     
-                    const url = "https://data.mongodb-api.com/app/data-ekngi/endpoint/data/v1/action/insertOne";
+                    const url = "https://stemkitsapi-production.up.railway.app/new_order";
 
                     const data = {
                         name : this.state.name,
@@ -240,7 +202,20 @@ export default class Checkout extends React.Component {
                         country : this.state.country,
                         kit1Count : localStorage.getItem(kit1_product_id),
                         kit2Count : localStorage.getItem(kit2_product_id),
+                        total : this.getTotal(),
                     }
+
+                    fetch(url , {
+                        method : "POST",
+                        mode : "cors",
+                        headers: {
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body : JSON.stringify(data),
+                    })
+                    .then(res => this.snackbar(`Successfully placed order`))
+                    .catch(err => this.error(`${err}`));
 
 
                     this.setState({
