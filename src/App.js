@@ -254,7 +254,7 @@ class App extends React.Component {
             
 
             <div className='footer'>
-              <span>Developed by Omer Ali Malik.</span>
+              <span>A Product of STEM Kits Pakistan.</span>
             </div>
           </div>
         </main>
